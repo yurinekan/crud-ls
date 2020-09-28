@@ -1,15 +1,18 @@
 <ion-header no-border>
-  <ion-toolbar>
+  <!-- <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button color="dark"></ion-menu-button>
     </ion-buttons>
     <ion-title>
       CRUD
     </ion-title>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
+  <div class="space" text-center>
+    Lista de afazeres
+  </div>
   <ion-list lines="none">
     <div class="count" text-center *ngIf="tasks.length < 1">
       <p>Não há nenhuma tarefa.</p>
@@ -18,16 +21,16 @@
       <ion-item (click)="changeStatus(task)">
         <ion-label class="name_of_task">{{task.name}}</ion-label>
         <ion-icon *ngIf=!task.done slot="start" name="radio-button-off"></ion-icon>
-        <ion-icon *ngIf=task.done slot="start" name="checkmark-circle" color="success"></ion-icon>
+        <ion-icon *ngIf=task.done slot="start" name="checkmark-circle"></ion-icon>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option class="options" expandable (click)="delete(task)" color="dark">
+        <ion-item-option class="options" (click)="delete(task)" color="dark">
           <ion-icon name="trash" color="danger"></ion-icon>
         </ion-item-option>
       </ion-item-options>
       <ion-item-options side="start">
-        <ion-item-option class="options" expandable (click)="edit(i)" color="light">
-          <ion-icon name="create" mode="md"></ion-icon>
+        <ion-item-option class="options" (click)="edit(i)" color="light">
+          <ion-icon name="create" mode="md" color="white"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
@@ -39,7 +42,7 @@
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="showAlert()">
-      <ion-icon color="dark" name="add"></ion-icon>
+      <ion-icon color="light" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>

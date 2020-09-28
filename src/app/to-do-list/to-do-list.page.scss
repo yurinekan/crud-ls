@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 ion-header {
     ion-toolbar {
-        --background: rgb(31, 31, 31);
+        --background: rgba(31, 31, 31, 0);
         font-weight: 900;
         text-shadow: 1px 1px 2px black; 
         color: white;
@@ -13,33 +14,47 @@ ion-header {
 }
 
 ion-content {
-    --background: linear-gradient(0deg, rgba(233,233,166,1) 0%, rgba(13,13,56,1) 52%);
+    --background: linear-gradient(0deg, rgb(245, 216, 121) 0%, rgba(13,13,56,1) 52%);
     ion-list {
             background-color: rgba(0, 0, 0, 0);
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         ion-fab-button {
             margin: 0 15px 15px 0;
-            --background: -webkit-radial-gradient(circle, #f5f579, #e9e9a6);
-            --background-activated: -webkit-radial-gradient(circle, #c2c299, #afaf7d);
+            --background: -webkit-radial-gradient(circle,  rgba(13,13,56,1),  rgb(18, 18, 78));
+            --background-activated: -webkit-radial-gradient(circle,  rgb(11, 11, 37),  rgba(13,13,56,1));
         }
          ion-item {
-             
-             margin-top: 2px;
+             margin: 4px 10px 0 10px;
+             --border-radius: 10px;
             --background: -webkit-linear-gradient(right, #afafafcc, #fffefecc);
+         }
+         ion-item-option {
+            background-color: rgba(0, 0, 0, 0);
          }
          .options {
              margin-top: 2px;
          }
          .count {
-             font-weight: 700;
-             color: white;
+             font-weight: 400;
+             color: rgb(231, 231, 231);
+             font-size: 0.9rem;
             // -webkit-text-stroke-width: 0.5px;
             // -webkit-text-stroke-color: rgb(250, 164, 164);
-            text-shadow: 1px 1px 2px black; 
+            // text-shadow: 1px 1px 2px black; 
         }
     .name_of_task::first-letter {
         text-transform: uppercase;
     }
 }
-// style="background: var(--ion-color-danger);"
+.space {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+
+}
