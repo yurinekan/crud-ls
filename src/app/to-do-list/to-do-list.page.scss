@@ -1,20 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-ion-header {
-    ion-toolbar {
-        --background: rgba(31, 31, 31, 0);
-        font-weight: 900;
-        text-shadow: 1px 1px 2px black; 
-        color: white;
-        display: flex;
-        align-items: center;
-    }
-    ion-title {
-        font-size: 1.8rem;
-    }
-}
 
 ion-content {
-    --background: linear-gradient(0deg, rgb(245, 216, 121) 0%, rgba(13,13,56,1) 52%);
+    --background: linear-gradient(0deg, rgb(245, 216, 121) -30%, rgba(13,13,56,1) 52%);
     ion-list {
             background-color: rgba(0, 0, 0, 0);
             font-family: 'Poppins', sans-serif;
@@ -27,7 +13,7 @@ ion-content {
          ion-item {
              margin: 4px 10px 0 10px;
              --border-radius: 10px;
-            --background: -webkit-linear-gradient(right, #afafafcc, #fffefecc);
+            --background: -webkit-linear-gradient(right, #afafaf, #fffefe);
          }
          ion-item-option {
             background-color: rgba(0, 0, 0, 0);
