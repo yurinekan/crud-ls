@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ToastController, ActionSheetController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { toastController } from '@ionic/core';
 
 @Component({
@@ -9,7 +9,7 @@ import { toastController } from '@ionic/core';
 })
 export class ToDoListPage implements OnInit {
   tasks: any[] = [];
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private aSheetCtrl: ActionSheetController) {
+  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController) {
     const tasksString = localStorage.getItem('db_tasks');
     if (tasksString != null) {
       this.tasks = JSON.parse(tasksString);
