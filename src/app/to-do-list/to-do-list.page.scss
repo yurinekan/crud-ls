@@ -14,7 +14,7 @@ ion-header {
 }
 
 ion-content {
-    --background: linear-gradient(0deg, rgb(245, 216, 121) -30%, rgba(13,13,56,1) 52%);
+    --background: linear-gradient(0deg, rgb(245, 216, 121) 0%, rgba(13,13,56,1) 52%);
     ion-list {
             background-color: rgba(0, 0, 0, 0);
             font-family: 'Poppins', sans-serif;
@@ -27,7 +27,7 @@ ion-content {
          ion-item {
              margin: 4px 10px 0 10px;
              --border-radius: 10px;
-            --background: -webkit-linear-gradient(right, #afafaf, #fffefe);
+            --background: -webkit-linear-gradient(right, #afafafcc, #fffefecc);
          }
          ion-item-option {
             background-color: rgba(0, 0, 0, 0);
