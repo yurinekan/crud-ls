@@ -1,42 +1,48 @@
 <ion-header no-border>
-  <!-- <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color="dark"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      CRUD
-    </ion-title>
-  </ion-toolbar> -->
 </ion-header>
-
 <ion-content>
-  <div class="space" text-center>
-    Lista de afazeres
-  </div>
+  <header>
+    <section class="space" id="header-initial" *ngIf="tasks.length < 1">
+      <img src="../../assets/img/ilus_tasks.svg" alt="Imagem para quando não houver atividades.">
+      <h1>
+        Você ainda não tem nenhuma tarefa.
+      </h1>
+    </section>
+
+    <section class="space" *ngIf="tasks.length != 0">
+      <h1>Lista de tarefas:</h1>
+    </section>
+
+  </header>
+
   <ion-list lines="none">
-    <div class="count" text-center *ngIf="tasks.length < 1">
-      <p>Não há nenhuma tarefa.</p>
-    </div>
     <ion-item-sliding *ngFor="let task of tasks; let i = index">
+
       <ion-item (click)="changeStatus(task)">
         <ion-label class="name_of_task">{{task.name}}</ion-label>
         <ion-icon *ngIf=!task.done slot="start" name="radio-button-off"></ion-icon>
         <ion-icon *ngIf=task.done slot="start" name="checkmark-circle"></ion-icon>
       </ion-item>
+
       <ion-item-options side="end">
         <ion-item-option class="options" (click)="delete(task)" color="dark">
           <ion-icon name="trash" color="danger"></ion-icon>
         </ion-item-option>
       </ion-item-options>
+
       <ion-item-options side="start">
-        <ion-item-option class="options" (click)="edit(i)" color="light">
+        <ion-item-option class="options" (click)="edit(i)" color="dark">
           <ion-icon name="create" mode="md" color="white"></ion-icon>
         </ion-item-option>
       </ion-item-options>
+
     </ion-item-sliding>
-    <div class="count" text-center *ngIf="tasks.length != 0">
-      <p>Há {{tasks.length}} tarefa(s).</p>
+
+
+    <div class="count" text-center>
+      <p *ngIf="tasks.length != 0">Há {{tasks.length}} tarefa(s).</p>
     </div>
+
   </ion-list>
 
 

@@ -13,7 +13,7 @@ export class AppComponent {
   public appPages = [
     // trocar aqui para voltar a ter rotas em OpcA e OpcB.
     {
-      title: 'CRUD',
+      title: 'ToDonek',
       url: '/to-do-list',
       icon: 'list'
     },

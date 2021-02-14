@@ -19,6 +19,16 @@ export class ToDoListPage implements OnInit {
   ngOnInit() {
   }
 
+  async toast(message, color) {
+    const toast = await this.toastCtrl.create({
+      message,
+      color,
+      duration: 1200,
+      position: 'top'
+    });
+    toast.present();
+  }
+
   async showAlert() {
     const alert = await this.alertCtrl.create({
       header: 'O que vai fazer?',
@@ -49,25 +59,14 @@ export class ToDoListPage implements OnInit {
     await alert.present();
   }
 
-  async toastError() {
-    const toast = await this.toastCtrl.create({
-      message: 'Informe alguma atividade!',
-      showCloseButton: true,
-      duration: 2000,
-      position: 'top',
-      closeButtonText: 'Fechar',
-      color: 'dark'
-    });
-    toast.present();
-  }
-
   async addTask(task: string) {
     if (task.trim().length < 1) {
-      this.toastError();
+      this.toast('Informe alguma atividade!', 'dark');
     }
     if (task.trim().length >= 1) {
     const taskToDo = { name: task, done: false };
     this.tasks.push(taskToDo);
+    this.toast('Atividade adicionada', 'success');
     this.updateLocalStorage();
     }
   }
@@ -77,12 +76,36 @@ export class ToDoListPage implements OnInit {
     this.updateLocalStorage();
   }
 
-  delete(task: any) {
-    this.tasks = this.tasks.filter(taskArray => task !== taskArray);
-    this.updateLocalStorage();
+  async delete(task: any) {
+    let subHeader;
+    if(task.done == false) {
+      subHeader = 'Essa atividade ainda não foi concluída.'
+    }
+    
+    const alert = await this.alertCtrl.create({
+      header: 'Quer mesmo apagar?',
+      subHeader,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancelou.');
+          }
+        },
+        {
+          text: 'Apagar',
+          handler: () => {
+            this.tasks = this.tasks.filter(taskArray => task !== taskArray);
+            this.updateLocalStorage();
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
+
   async edit(i: number) {
-    // console.log(i);
     const alert = await this.alertCtrl.create({
       header: 'O que vai fazer?',
       inputs: [
@@ -108,7 +131,7 @@ export class ToDoListPage implements OnInit {
               this.tasks.splice(i, 1, {name: form.newtask, done: false});
               this.updateLocalStorage();
             } else {
-              this.toastError();
+              this.toast('Informe alguma atividade!', 'dark');
             }
           }
         }
@@ -118,6 +141,7 @@ export class ToDoListPage implements OnInit {
     // this.showAlert();
     // this.tasks = this.tasks.filter(taskArray => toDelete !== taskArray);
   }
+
   updateLocalStorage() {
     localStorage.setItem('db_tasks', JSON.stringify(this.tasks));
   }
