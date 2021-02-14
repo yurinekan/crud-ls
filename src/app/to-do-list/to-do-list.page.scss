@@ -1,7 +1,7 @@
 ion-content {
     --background: linear-gradient(0deg, var(--ion-color-light) -30%, #E5E5EA 52%);
     ion-list {
-            margin-top: 10%;
+            margin-top: 5%;
             background-color: rgba(0, 0, 0, 0);
         }
         ion-fab-button {
@@ -37,8 +37,10 @@ ion-content {
     justify-content: center;
     flex-direction: column;
     color: var(--ion-color-dark);
+    margin-top: 10%;
     &#header-initial {
         padding: 15%;
+        margin-top: 0;
     }
     h1 {
         font-weight: 600;
