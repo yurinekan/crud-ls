@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
-import { toastController } from '@ionic/core';
 
 @Component({
   selector: 'app-to-do-list',
@@ -96,6 +95,7 @@ export class ToDoListPage implements OnInit {
         {
           text: 'Apagar',
           handler: () => {
+            this.toast('Atividade deletada', 'danger');
             this.tasks = this.tasks.filter(taskArray => task !== taskArray);
             this.updateLocalStorage();
           }
@@ -138,8 +138,6 @@ export class ToDoListPage implements OnInit {
       ]
     });
     await alert.present();
-    // this.showAlert();
-    // this.tasks = this.tasks.filter(taskArray => toDelete !== taskArray);
   }
 
   updateLocalStorage() {

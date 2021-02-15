@@ -27,5 +27,31 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap');
 body {
-    background-color: rgba(13,13,56,1);
+    background-color: linear-gradient(0deg, var(--ion-color-light) -30%, #E5E5EA 52%);
+}
+
+@keyframes appearText {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes roll {
+    0% {
+        transform: rotate(-360deg)
+    }
+    100% {
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+    }
 }
