@@ -1,9 +1,9 @@
 <ion-header no-border>
 </ion-header>
-<ion-content>
+<ion-content [ngClass]="!!tasks.length ? '' : 'no-overflow'">
   <header>
     <section class="space" id="header-initial" *ngIf="tasks.length < 1">
-      <img src="../../assets/img/ilus_tasks.svg" alt="Imagem para quando não houver atividades.">
+      <ng-lottie [options]='options'></ng-lottie>
       <h1>
         Você ainda não tem nenhuma tarefa.
       </h1>

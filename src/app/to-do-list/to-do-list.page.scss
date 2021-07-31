@@ -1,39 +1,51 @@
+.no-overflow {
+    --overflow: hidden;
+}
 ion-content {
-    --background: linear-gradient(0deg, var(--ion-color-light) -30%, #E5E5EA 52%);
+    --background: linear-gradient(0deg, var(--ion-color-light) -30%, #e5e5ea 52%);
     ion-list {
-            margin-top: 5%;
-            background-color: rgba(0, 0, 0, 0);
-        }
-        ion-fab-button {
-            animation: roll 1.5s ease-in-out;
-            margin: 0 15px 15px 0;
-            --background: -webkit-radial-gradient(circle,  rgb(21, 21, 119),  #12124e);
-            --background-activated: -webkit-radial-gradient(circle,  rgb(11, 11, 37),  rgba(13,13,56,1));
-        }
-         ion-item {
-            animation: fadeIn .5s;
-            padding: 4px 16px 0 16px;
-            --border-radius: 10px;
-            --background: -webkit-linear-gradient(right, #fdbeb9 -70%, #fffefe 60%);
-            filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.178));
-            height: 60px;
-        }
-         ion-item-option {
-            background-color: rgba(0, 0, 0, 0);
-            #trash {
-                padding-right: 2px;
-            } #edit {
-                padding-left: 3px;
+        margin-top: 5%;
+        background-color: rgba(0, 0, 0, 0);
+    }
+    ion-fab-button {
+        animation: popUp 0.8s ease-in-out;
+        margin: 0 15px 15px 0;
+        --background: -webkit-radial-gradient(circle, #151577, #12124e);
+        --background-activated: -webkit-radial-gradient(circle, #151577, #0d0d38);
+        --background-hover: #151577;
+    }
+
+    @for $i from 1 to 1000 {
+        ion-item-sliding:nth-child(#{$i}) {
+            ion-item {
+                animation: fadeIn 1s $i * .2s both;
+                opacity: 0;
+                padding: 4px 16px 0 16px;
+                --border-radius: 10px;
+                --background: -webkit-linear-gradient(right, #fdbeb9 -70%, #fffefe 60%);
+                filter: drop-shadow(4px 4px 5px rgba(0, 0, 0, 0.178));
+                height: 60px;
             }
-         }
-         .options {
-             margin-top: 2px;
-         }
-         .count {
-             font-weight: 400;
-             color: var(--ion-color-dark);
-             font-size: 0.9rem;
         }
+    }
+
+    ion-item-option {
+        background-color: rgba(0, 0, 0, 0);
+        #trash {
+            padding-right: 2px;
+        }
+        #edit {
+            padding-left: 3px;
+        }
+    }
+    .options {
+        margin-top: 2px;
+    }
+    .count {
+        font-weight: 400;
+        color: var(--ion-color-dark);
+        font-size: 0.9rem;
+    }
     .name_of_task::first-letter {
         text-transform: uppercase;
     }
@@ -48,11 +60,14 @@ ion-content {
     &#header-initial {
         padding: 15%;
         margin-top: 0;
+        ng-lottie {
+            animation: popUp 0.8s, fadeIn 0.8s;
+        }
     }
     h1 {
         font-weight: 600;
         font-size: 1.5rem;
-        font-family: 'Poppins', sans-serif;
-        animation: appearText .5s;
+        font-family: "Poppins", sans-serif;
+        animation: appearText 0.8s;
     }
 }

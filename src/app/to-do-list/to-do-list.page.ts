@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { AlertController, ToastController } from '@ionic/angular';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-to-do-list',
@@ -8,7 +10,13 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class ToDoListPage implements OnInit {
   tasks: any[] = [];
-  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController) {
+  maxTask = 1000;
+
+  options: AnimationOptions = {
+    path: 'assets/tasks.json'
+  }
+
+  constructor(private alertCtrl: AlertController, private toastCtrl: ToastController, private kb: Keyboard) {
     const tasksString = localStorage.getItem('db_tasks');
     if (tasksString != null) {
       this.tasks = JSON.parse(tasksString);
@@ -25,7 +33,7 @@ export class ToDoListPage implements OnInit {
       duration: 1200,
       position: 'top'
     });
-    toast.present();
+    await toast.present()
   }
 
   async showAlert() {
@@ -43,19 +51,27 @@ export class ToDoListPage implements OnInit {
           text: 'Cancelar',
           role: 'cancel',
           handler: () => {
-            console.log('Cancelou.');
+            console.log('Não adicionou a task.');
           }
         },
         {
           text: 'Adicionar',
           handler: (form) => {
-            console.log(form);
-            this.addTask(form.task);
+            if (this.tasks.length < 1000) {
+              this.addTask(form.task);
+            } else
+              this.toast('Número máximo de tasks!', 'dark');
           }
         }
       ]
     });
-    await alert.present();
+    await alert.present().then(() => {
+      const firstInput: any = document.querySelector('ion-alert input');
+	    firstInput.focus();
+	    return;
+    });
+    let firstInput: any = document.getElementsByClassName('alert-input').item(0)
+    firstInput.focus();
   }
 
   async addTask(task: string) {
@@ -63,10 +79,10 @@ export class ToDoListPage implements OnInit {
       this.toast('Informe alguma atividade!', 'dark');
     }
     if (task.trim().length >= 1) {
-    const taskToDo = { name: task, done: false };
-    this.tasks.push(taskToDo);
-    this.toast('Atividade adicionada', 'success');
-    this.updateLocalStorage();
+      const taskToDo = { name: task, done: false };
+      this.tasks.push(taskToDo);
+      this.toast('Atividade adicionada', 'success');
+      this.updateLocalStorage();
     }
   }
 
@@ -77,10 +93,10 @@ export class ToDoListPage implements OnInit {
 
   async delete(task: any) {
     let subHeader;
-    if(task.done == false) {
+    if (task.done == false) {
       subHeader = 'Essa atividade ainda não foi concluída.'
     }
-    
+
     const alert = await this.alertCtrl.create({
       header: 'Quer mesmo apagar?',
       subHeader,
@@ -128,10 +144,11 @@ export class ToDoListPage implements OnInit {
           handler: (form) => {
             console.log(form);
             if (form.newtask.trim().length >= 1) {
-              this.tasks.splice(i, 1, {name: form.newtask, done: false});
+              this.tasks.splice(i, 1, { name: form.newtask, done: false });
+              this.toast('Atividade atualizada', 'success');
               this.updateLocalStorage();
             } else {
-              this.toast('Informe alguma atividade!', 'dark');
+              this.toast('Informe o nome da atividade!', 'dark');
             }
           }
         }

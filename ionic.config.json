@@ -1,7 +1,8 @@
 {
   "name": "toDo",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
